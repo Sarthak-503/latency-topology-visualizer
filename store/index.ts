@@ -1,0 +1,21 @@
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import topologyReducer from '@/store/slices/topologySlice';
+import uiReducer from './slices/uiSlice';
+import { networkApi } from '@/app/api/networkApi';
+
+export const store = configureStore({
+  reducer: {
+    topology: topologyReducer,
+    ui: uiReducer,
+    [networkApi.reducerPath]: networkApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(networkApi.middleware),
+});
+
+setupListeners(store.dispatch);
+
+export type RootState = ReturnType<typeof store.getState>;
