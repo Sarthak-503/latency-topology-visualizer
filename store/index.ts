@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import topologyReducer from '@/store/slices/topologySlice';
 import uiReducer from './slices/uiSlice';
-import { networkApi } from '@/app/api/networkApi';
+import { networkApi } from '@/store/api/networkApi';
 
 export const store = configureStore({
   reducer: {

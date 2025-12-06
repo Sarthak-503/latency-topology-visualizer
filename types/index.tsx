@@ -57,3 +57,8 @@ export interface FilterState {
   maxLatency: number;
   searchQuery: string;
 }
+
+export interface ChartDataPoint {
+  time: string;
+  latency: number;
+}
