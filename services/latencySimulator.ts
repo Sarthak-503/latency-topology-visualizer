@@ -16,42 +16,51 @@ function getDistanceLatency(lat1: number, lng1: number, lat2: number, lng2: numb
 }
 
 function deg2rad(deg: number) {
-  return deg * (Math.PI / 180);
+  return deg * (Math.PI/ 180);
 }
 
 const HISTORY_BUFFER_SIZE = 100;
 
 export const generateInitialLinks = (nodes: GeoNode[]): LatencyLink[] => {
   const links: LatencyLink[] = [];
-  
+
+  // Iterate through each unique pair of nodes
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
-      const source = nodes[i];
-      const target = nodes[j];
-      const baseLatency = getDistanceLatency(source.lat, source.lng, target.lat, target.lng);
-      
-      const shouldConnect = baseLatency < 250 || 
-        (source.type === 'Exchange' && target.type === 'Cloud Region');
+      const nodeA = nodes[i];
+      const nodeB = nodes[j];
 
-      if (shouldConnect) {
-        const history = Array.from({ length: 60 }, (_, k) => ({
-            timestamp: Date.now() - (60 - k) * 2000,
-            value: baseLatency + (Math.random() * 10 - 5)
-          }));
+      // Compute the base latency using geographical distance
+      const baseLatency = getDistanceLatency(nodeA.lat, nodeA.lng, nodeB.lat, nodeB.lng);
 
-        links.push({
-          id: `${source.id}-${target.id}`,
-          source: source.id,
-          target: target.id,
-          latencyMs: baseLatency,
-          status: 'optimal',
-          history: history
-        });
-      }
+      // Decide whether to create a link
+      const connectNodes =
+        baseLatency < 250 ||
+        (nodeA.type === "Exchange" && nodeB.type === "Cloud Region");
+
+      if (!connectNodes) continue;
+
+      // Generate initial latency history (60 entries, 2s apart)
+      const latencyHistory = Array.from({ length: 60 }, (_, index) => ({
+        timestamp: Date.now() - (60 - index) * 2000,
+        value: baseLatency + (Math.random() * 10 - 5), // add small random fluctuation
+      }));
+
+      // Add the link to the result array
+      links.push({
+        id: `${nodeA.id}-${nodeB.id}`,
+        source: nodeA.id,
+        target: nodeB.id,
+        latencyMs: baseLatency,
+        status: "optimal",
+        history: latencyHistory,
+      });
     }
   }
+
   return links;
 };
+
 
 export const updateLatencies = (links: LatencyLink[]): LatencyLink[] => {
   return links.map(link => {
