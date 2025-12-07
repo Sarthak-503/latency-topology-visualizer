@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CloudProvider, FilterState } from "@/types";
+import { CloudProvider, FilterState, ThemeMode } from "@/types";
 
 interface UiState {
   isSidebarOpen: boolean;
   selectedNodeId: string | null;
   filters: FilterState;
+  theme: ThemeMode;
 }
 
 const initialState: UiState = {
   isSidebarOpen: true,
   selectedNodeId: null,
+  theme: "light",
   filters: {
     showExchanges: true,
     showRegions: true,
@@ -33,6 +35,10 @@ export const uiSlice = createSlice({
     toggleSidebar: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen;
     },
+    toggleTheme: (state) => {
+      state.theme = state.theme === "light" ? "dark" : "light";
+    },
+
     selectNode: (state, action: PayloadAction<string | null>) => {
       state.selectedNodeId = action.payload;
     },
@@ -46,6 +52,11 @@ export const uiSlice = createSlice({
   },
 });
 
-export const { toggleSidebar, selectNode, updateFilter, toggleProvider } =
-  uiSlice.actions;
+export const {
+  toggleSidebar,
+  selectNode,
+  updateFilter,
+  toggleProvider,
+  toggleTheme,
+} = uiSlice.actions;
 export default uiSlice.reducer;

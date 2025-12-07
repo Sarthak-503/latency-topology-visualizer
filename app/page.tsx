@@ -9,11 +9,24 @@ import ControlPanel from "@/components/panel/ControlPanel";
 import StatsPanel from "@/components/panel/StatsPanel";
 import Legend from "@/components/panel/Legend";
 import { Menu, X } from "lucide-react";
+import { useEffect } from "react";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
 
   useSimulation();
+
+    const theme = useSelector((state: RootState) => state.ui.theme);
+  
+    useEffect(() => {
+      const root = document.documentElement;
+  
+      if (theme === "dark") {
+        root.classList.add("dark");
+      } else {
+        root.classList.remove("dark");
+      }
+    }, [theme]);
 
   const { isSidebarOpen, selectedNodeId } = useSelector(
     (state: RootState) => state.ui

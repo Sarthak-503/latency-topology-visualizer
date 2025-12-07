@@ -16,6 +16,8 @@ export interface LatencySample {
   value: number;
 }
 
+export type ThemeMode = "light" | "dark";
+
 export type LatencyLinkStatus = 'optimal' | 'moderate' | 'critical';
 
 export interface TopologyState {
