@@ -27,19 +27,20 @@ const Header = () => {
 
       {/* Right Side: Theme Toggle */}
       <div className="relative group">
-<button
-  onClick={() => dispatch(toggleTheme())}
-  className="p-2 rounded-lg bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 transition"
->
-  {theme === "light" ? (
-    <Sun size={20} className="text-slate-700" />
-  ) : (
-    <Moon size={20} className="text-slate-200" />
-  )}
-</button>
+        <button
+          onClick={() => dispatch(toggleTheme())}
+          className="p-2 rounded-lg bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 transition"
+        >
+          {theme === "light" ? (
+            <Sun size={20} className="text-slate-700" />
+          ) : (
+            <Moon size={20} className="text-slate-200" />
+          )}
+        </button>
 
         {/* Tooltip */}
-        <span className="absolute left-1/2 transform -translate-x-1/2 mt-2 bottom-0 translate-y-full opacity-0 group-hover:opacity-100
+        <span
+          className="absolute left-1/2 transform -translate-x-1/2 mt-2 bottom-0 translate-y-full opacity-0 group-hover:opacity-100
           bg-black text-white text-xs rounded px-2 py-1 whitespace-nowrap pointer-events-none
           transition-opacity duration-200 z-50"
         >

@@ -9,11 +9,14 @@ import ControlPanel from "@/components/panel/ControlPanel";
 import StatsPanel from "@/components/panel/StatsPanel";
 import Legend from "@/components/panel/Legend";
 import { Menu, X } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
 
+    const [isRotating, setIsRotating] = useState(true);
+  
+  const toggleRotation = () => setIsRotating((prev) => !prev);
   useSimulation();
 
     const theme = useSelector((state: RootState) => state.ui.theme);
@@ -39,7 +42,7 @@ const App: React.FC = () => {
   return (
     <div className="relative w-screen h-screen bg-white overflow-hidden font-sans transition-colors duration-300">
       <div className="absolute inset-0 z-0">
-        <GlobeWrapper />
+        <GlobeWrapper isRotating={isRotating} />
       </div>
 
       <div className="absolute inset-0 z-10 pointer-events-none flex">
@@ -74,7 +77,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <Legend />
+      <Legend toggleRotation={toggleRotation} isRotating={isRotating} />
     </div>
   );
 };

@@ -10,7 +10,7 @@ const GlobeViewer = dynamic(() => import("@/components/globe/GlobeViewer"), {
   ssr: false,
 });
 
-const GlobeWrapper: React.FC = () => {
+const GlobeWrapper: React.FC<{ isRotating: boolean }> = ({ isRotating }) => {
   const dispatch = useDispatch();
 
   const { nodes, links } = useSelector((state: RootState) => state.topology);
@@ -129,13 +129,17 @@ const GlobeWrapper: React.FC = () => {
   };
 
   return (
+    <>
     <GlobeViewer
       nodes={stableNodes}
       links={stableLinks}
       onNodeClick={handleNodeClick}
       width={dimensions.width}
       height={dimensions.height}
-    />
+      autoRotate={isRotating}
+      />
+      </>
+
   );
 };
 

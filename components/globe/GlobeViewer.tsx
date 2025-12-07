@@ -18,6 +18,7 @@ import {
 interface GlobeViewerProps {
   nodes: GeoNode[];
   links: any[];
+  autoRotate?: boolean;
   onNodeClick: (node: GeoNode) => void;
   width?: number;
   height?: number;
@@ -31,23 +32,23 @@ const getRingColor = () => ["rgba(255,255,255,0.9)", "rgba(255,255,255,0.05)"];
 const getLabelColor = () => "rgba(255, 255, 255, 0.75)";
 
 const GlobeViewer: React.FC<GlobeViewerProps> = React.memo(
-  ({ nodes, links, onNodeClick, width, height }) => {
+  ({ nodes, links, onNodeClick, width, height, autoRotate }) => {
     const globeEl = useRef<GlobeMethods | undefined>(undefined);
     const [hoveredNode, setHoveredNode] = useState<GeoNode | null>(null);
 
-    useEffect(() => {
-      if (globeEl.current) {
-        globeEl.current.controls().autoRotate = true;
-        globeEl.current.controls().autoRotateSpeed = 0.6;
-        globeEl.current.pointOfView({ lat: 20, lng: 0, altitude: 2.2 });
+useEffect(() => {
+  if (globeEl.current) {
+    const controls = globeEl.current.controls();
+    controls.autoRotate = autoRotate ?? true;
+    controls.autoRotateSpeed = 0.6;
+    globeEl.current.pointOfView({ lat: 20, lng: 0, altitude: 2.2 });
 
-        const renderer = globeEl.current.renderer();
-        if (renderer) {
-          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        }
-      }
-    }, []);
-
+    const renderer = globeEl.current.renderer();
+    if (renderer) {
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    }
+  }
+}, [autoRotate]);
     const arcColor = useCallback((link: any) => {
       if (link.status === "critical") return ["#FF0000", "#8B0000"];
       if (link.status === "moderate") return ["#FFD700", "#B8860B"];
