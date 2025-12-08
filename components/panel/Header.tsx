@@ -1,4 +1,4 @@
-import { Wifi, Sun, Moon } from "lucide-react";
+import { Globe, Sun, Moon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "@/store/slices/uiSlice";
 import { RootState } from "@/store";
@@ -12,12 +12,12 @@ const Header = () => {
       {/* Left Side */}
       <div className="flex items-center gap-3">
         <div className="bg-blue-600 p-2 rounded-lg">
-          <Wifi size={24} className="text-white" />
+          <Globe size={24} className="text-white" />
         </div>
 
         <div>
           <h1 className="text-xl font-bold leading-none tracking-tight">
-            Latency
+            Latency Topology
           </h1>
           <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest">
             Visualizer

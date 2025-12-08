@@ -52,13 +52,13 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className }) => {
       <LayersSection
         showExchanges={filters.showExchanges}
         showRegions={filters.showRegions}
-        onToggle={(partial) => updateFilters(partial)}
+        onToggle={(layers) => updateFilters(layers)}
       />
 
       <VisualizationSection
         showRealTime={filters.showRealTime}
         showHistorical={filters.showHistorical}
-        onToggle={(partial) => updateFilters(partial)}
+        onToggle={(visualization) => updateFilters(visualization)}
       />
 
       <ProviderSection

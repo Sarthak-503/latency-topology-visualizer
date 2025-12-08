@@ -35,7 +35,7 @@ export default function Legend({
         >
           {isRotating ? <Pause size={16} /> : <Play size={16} />}
           <span className="text-xs font-semibold">
-            {isRotating ? "Stop Rotation" : "Start Rotation"}
+            {isRotating ? "Stop" : "Auto Rotate"}
           </span>
         </button>
       </div>

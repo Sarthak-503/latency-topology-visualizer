@@ -1,5 +1,25 @@
 import { Layers } from "lucide-react";
 
+const SectionToggle = ({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: (v: boolean) => void;
+}) => (
+  <label className="flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-800/50 rounded-lg cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+    <span className="text-sm">{label}</span>
+    <input
+      type="checkbox"
+      checked={checked}
+      onChange={(e) => onChange(e.target.checked)}
+      className="accent-blue-500 h-4 w-4"
+    />
+  </label>
+);
+
 interface Props {
   showExchanges: boolean;
   showRegions: boolean;
@@ -33,23 +53,3 @@ const LayersSection = ({ showExchanges, showRegions, onToggle }: Props) => {
 };
 
 export default LayersSection;
-
-const SectionToggle = ({
-  label,
-  checked,
-  onChange,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (v: boolean) => void;
-}) => (
-  <label className="flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-800/50 rounded-lg cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-    <span className="text-sm">{label}</span>
-    <input
-      type="checkbox"
-      checked={checked}
-      onChange={(e) => onChange(e.target.checked)}
-      className="accent-blue-500 h-4 w-4"
-    />
-  </label>
-);
