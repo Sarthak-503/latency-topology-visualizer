@@ -76,7 +76,7 @@ const App: React.FC = () => {
           />
         </div>
       </div>
-
+        
       <Legend toggleRotation={toggleRotation} isRotating={isRotating} />
     </div>
   );
