@@ -7,7 +7,7 @@ import { useSimulation } from "@/hooks/usePingSimulation";
 import GlobeWrapper from "@/components/globe/GlobeWrapper";
 import ControlPanel from "@/components/panel/control-panel/ControlPanel";
 import StatsPanel from "@/components/panel/stats-panel/StatsPanel";
-import Legend from "@/components/panel/Legend";
+import Legend from "@/components/Legend";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
