@@ -1,6 +1,6 @@
 import React from "react";
 import { Clock, Globe } from "lucide-react";
-import { getLatencyColor } from "../../lib/latencyUtils";
+import { getLatencyColor } from "@/lib/latencyUtils";
 
 interface StatsCardsProps {
   currentLatency: number;

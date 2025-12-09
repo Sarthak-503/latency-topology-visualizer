@@ -3,14 +3,14 @@
 import React, { useMemo, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { GeoNode, LatencyLink } from "../../types";
+import { GeoNode, LatencyLink } from "@/types";
 import { exportLatencyReportToPDF } from "@/services/pdfExporter";
-import { NodeHeader } from "./NodeHeader";
-import { ClientLatencyCard } from "./ClientLatencyCard";
-import { StatsCards } from "./StatsCards";
-import { LatencyHistoryChart } from "./LatencyHistoryChart";
-import { ConnectionsList } from "./ConnectionsList";
-import { EmptyState } from "./EmptyState";
+import { NodeHeader } from "@/components/panel/stats-panel/NodeHeader";
+import { ClientLatencyCard } from "@/components/panel/stats-panel/ClientLatencyCard";
+import { StatsCards } from "@/components/panel/stats-panel/StatsCards";
+import { LatencyHistoryChart } from "@/components/panel/stats-panel/LatencyHistoryChart";
+import { ConnectionsList } from "@/components/panel/stats-panel/ConnectionsList";
+import { EmptyState } from "@/components/panel/stats-panel/EmptyState";
 import { formatTime } from "@/lib/formatTime";
 
 const TIME_RANGES = {

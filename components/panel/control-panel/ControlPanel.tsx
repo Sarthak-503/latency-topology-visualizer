@@ -10,11 +10,11 @@ import {
 import { RootState } from "@/store";
 
 import Header from "@/components/panel/Header";
-import SearchInput from "@/components/panel/SearchInput";
-import LayersSection from "@/components/panel/LayersSection";
-import VisualizationSection from "@/components/panel/VisualizationSection";
+import SearchInput from "@/components/panel/control-panel/SearchInput";
+import LayersSection from "@/components/panel/control-panel/LayersSection";
+import VisualizationSection from "@/components/panel/control-panel/VisualizationSection";
 import ProviderSection from "@/components/panel/ProviderSection";
-import LatencyThreshold from "@/components/panel/LatencyThreshold";
+import LatencyThreshold from "@/components/panel/control-panel/LatencyThreshold";
 
 interface ControlPanelProps {
   className?: string;

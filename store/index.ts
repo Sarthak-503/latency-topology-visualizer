@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import topologyReducer from '@/store/slices/topologySlice';
-import uiReducer from './slices/uiSlice';
+import uiReducer from '@/store/slices/uiSlice';
 import { networkApi } from '@/store/api/networkApi';
 
 export const store = configureStore({
