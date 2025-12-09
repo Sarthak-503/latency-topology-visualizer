@@ -9,11 +9,11 @@ import {
 } from "@/store/slices/uiSlice";
 import { RootState } from "@/store";
 
-import Header from "@/components/panel/Header";
+import Header from "@/components/panel/control-panel/Header";
 import SearchInput from "@/components/panel/control-panel/SearchInput";
 import LayersSection from "@/components/panel/control-panel/LayersSection";
 import VisualizationSection from "@/components/panel/control-panel/VisualizationSection";
-import ProviderSection from "@/components/panel/ProviderSection";
+import ProviderSection from "@/components/panel/control-panel/ProviderSection";
 import LatencyThreshold from "@/components/panel/control-panel/LatencyThreshold";
 
 interface ControlPanelProps {
